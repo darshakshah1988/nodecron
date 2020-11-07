@@ -1,35 +1,23 @@
 const http = require("http");
 const mysql = require("mysql");
 const hostname = '127.0.0.1';
-const port = 3500;
+const port = process.env.PORT || 3500;
 
+var connection = mysql.createConnection({
+  host     : '54.87.245.96',
+  user     : 'check',
+  password : 'wKfRytD67v',
+  database : 'db_scripts'
+});
 
-// var connection = mysql.createConnection({
-//   host     : '54.87.245.96:3306',
-//   user     : 'check',
-//   password : 'wKfRytD67v',
-//   database : 'db_scripts'
+// connection.connect();
+
+// connection.query('SELECT * FROM sms', function (error, results, fields) {
+//   if (error) throw error;
+//   console.log('The solution is: ', results[0]);
 // });
 
-var pool = mysql.createPool({
-        connectionLimit : 100,
-        host     : '54.87.245.96',
-        port     :  3306,
-        user     : 'check',
-        password : 'wKfRytD67v',
-        database : 'db_scripts',
-        connectionLimit : 10,               // this is the max number of connections before your pool starts waiting for a release
-    	multipleStatements : true
-    });
-exports.getConnection = function(callback) {
-  pool.getConnection(function(err, conn) {
-    if(err) {
-      return callback(err);
-    }
-    callback(err, conn);
-  });
-};
-
+// connection.end();
 
 
 
